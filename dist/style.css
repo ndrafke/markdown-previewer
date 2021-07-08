@@ -1,0 +1,31 @@
+main{
+  background-color: silver;
+  color: black;
+  min-height: 100vh;
+}
+#editor{
+  min-height: 500px;
+  background-color: #0047bb;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: white;
+}
+.preview{
+  min-height: 500px;
+  background-color: #0047bb;
+  color: white;
+  font-size: 0.8rem;
+}
+
+blockquote,
+code,
+pre {
+  background-color: black;
+  color: orange;
+  padding: 0.1rem;
+}
+
+a{
+  background-color: white;
+  padding: 0.1rem;
+}

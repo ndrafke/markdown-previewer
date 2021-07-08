@@ -1,0 +1,72 @@
+const defaultText = `
+# heading 1
+## heading 2
+### heading 3
+#### h4
+**bold text**
+*italicized text*
+> Block Quotes!
+
+1. ordered list item 1
+2. ordered list item 2
+3. ordered list item 3
+- unordered list item 1
+- unordered list item 2
+- unordered list item 3
+---
+three or more dashes creates a horizontal line
+
+\`<p>inline code goes between single backticks</p>\`
+
+\`\`\` 
+let a = "multi-line code";
+let b = " goes between a set of three backticks";
+let c = a + b;
+\`\`\`
+
+[Link names go in square backets followed by URL in parentheses](www.freecodecamp.org)
+
+![Imgur](https://i.imgur.com/07If8aZt.jpg)
+`;
+class Markdown extends React.Component{
+constructor(props){
+  super(props);
+  this.state = {
+    text: defaultText
+  }
+this.handleChange = this.handleChange.bind(this);  
+}
+handleChange = (event) => {
+  this.setState({
+    text: event.target.value
+  })
+}  
+ 
+  render(){
+   const {text} = this.state; 
+   const markdown = marked(text); 
+    
+   marked.setOptions({
+  breaks: true
+});
+    
+    return(
+    <div>
+        <h1 className="text-center p-3" style={{fontFamily: "american typewriter, serif"}}>Markdown Previewer</h1>     
+      <div className="row">
+      <div className="col-6">
+        <h4 className="text-center" style={{fontFamily: "american typewriter, serif"}}>edit</h4>
+        <textarea className= "form-control border border-dark p-1" id="editor" value={text} onChange={this.handleChange}/>
+        </div>
+        <div className="col-6">
+          <h4 className="text-center" style={{fontFamily: "american typewriter, serif"}}>result</h4>
+     <div id="preview" className="preview border border-dark rounded p-1" dangerouslySetInnerHTML={{__html: markdown}}></div>
+        </div>
+        </div>
+            
+    </div>    
+    )
+  }
+}
+
+ReactDOM.render(<Markdown/>, document.getElementById("markdown"))
